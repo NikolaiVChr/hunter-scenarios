@@ -2,7 +2,8 @@ import networkx as nx
 
 import hunter.geometry as g
 import hunter.mp_targets as mpt
-from hunter.scenarios import OPFOR_defaults, ScenarioContainer, StaticTarget, create_circle_points, load_network, default_helis_list
+from hunter.scenarios import (OPFOR_defaults, ScenarioContainer, StaticTarget, create_circle_points, load_network,
+                              default_helis_list)
 
 
 def _construct_dammastock_circle() -> nx.DiGraph:

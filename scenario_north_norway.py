@@ -6,7 +6,8 @@ import hunter.fg_targets as fgt
 import hunter.geometry as g
 import hunter.mp_targets as mpt
 from hunter.scenarios import (OPFOR_defaults, ScenarioContainer, StaticTarget, CarrierDefinition, TankerDefinition,
-                              AutomatTarget, AutomatType, ENTC)
+                              AutomatTarget, AutomatType, ENTC,
+                              default_ships_list, default_helis_list, default_drones_list)
 
 
 def _construct_north_norway_ship(above_ground_m: float) -> nx.Graph:
@@ -259,13 +260,6 @@ def _construct_sail_area_carrier_enat() -> List[Tuple[float, float]]:
     return [(24., 71.25), (23.5, 71.125), (23., 71), (22.5, 70.875), (22., 70.75), (21.5, 70.625), (21., 70.5),
             (20.5, 70.375), (20., 70.375), (20., 71.), (21., 71.25),
             (22., 71.375), (23., 71.375), (24., 71.375)]
-
-
-# Assets are randomly chosen. If they appear more often, then the probability gets higher
-default_ships_list = [mpt.oprf_frigate, mpt.us_navy_lake_champlain, mpt.us_navy_normandy, mpt.us_navy_oliver_perry,
-                      mpt.us_navy_san_antonio]
-default_helis_list = [mpt.blue_tigre, mpt.blue_ch_47, mpt.red_mi_8, mpt.red_mi_24]
-default_drones_list = [mpt.blue_mq_9]
 
 
 def build_scenario() -> ScenarioContainer:
