@@ -3,7 +3,7 @@ import hunter.mp_targets as mpt
 from hunter.scenarios import OPFOR_defaults, ScenarioContainer, StaticTarget
 
 
-def build_scenario() -> ScenarioContainer:
+def build_scenario(path: str) -> ScenarioContainer:
     static_targets = [
         StaticTarget(mpt.MPTarget.SHILKA, g.Position(24.9792, 70.0577, 7), 0, 2),
     ]

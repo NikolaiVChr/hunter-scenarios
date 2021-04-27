@@ -43,7 +43,7 @@ def _construct_falklands_ship(above_ground_m: float) -> nx.Graph:
     return graph
 
 
-def build_scenario() -> ScenarioContainer:
+def build_scenario(path: str) -> ScenarioContainer:
     static_targets = [
         # Port Howard SFPH
         StaticTarget(mpt.MPTarget.DEPOT, g.Position(-59.50651585, -51.62629475, 1), 0),

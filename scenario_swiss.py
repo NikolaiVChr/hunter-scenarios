@@ -122,7 +122,7 @@ def _construct_lsmi_truck_track() -> nx.Graph:
     return graph
 
 
-def build_scenario() -> ScenarioContainer:
+def build_scenario(path: str) -> ScenarioContainer:
     static_targets = [
         # Axalp
         StaticTarget(mpt.MPTarget.HILL_TARGET, g.Position(8.0547, 46.7057, 2180), 70),  # Grätli left
@@ -143,7 +143,7 @@ def build_scenario() -> ScenarioContainer:
                                                             mpt.MPTargetTrips.STATIC_HP, 5, 10000, 0)
     # a convoy of trucks close to LSMP
     # network created with road_network.py: TEST/params.py -b *6.75_46.75_7_46.875 -o swiss_lsmp_roads.pkl
-    lsmp_trip_graph = load_network('swiss_lsmp_roads.pkl')
+    lsmp_trip_graph = load_network('swiss_lsmp_roads.pkl', path)
     origin_trip_lsmp = g.Position(6.7813, 46.8112)  # Cheyres
     dests_lsmp = [g.Position(6.9595, 46.8387),  # Corcelles
                   g.Position(6.8319, 46.7803),  # Nuvilly
@@ -157,7 +157,7 @@ def build_scenario() -> ScenarioContainer:
 
     # a convoy of trucks running around lake Murten
     # network created with road_network.py: -f TEST/params.py -b *7.018_46.9_7.148_46.97 -o swiss_murten_roads.pkl
-    murten_trip_graph = load_network('swiss_murten_roads.pkl')
+    murten_trip_graph = load_network('swiss_murten_roads.pkl', path)
     origin_trip_murten = g.Position(7.0253, 46.9200)  # Salavaux
     dests_murten = [g.Position(7.0752, 46.9083),  # Faoug
                     g.Position(7.1339, 46.9396),  # Muntelier
@@ -174,7 +174,7 @@ def build_scenario() -> ScenarioContainer:
     trip_targets.extend(murten_convoy)
 
     # network created with heli_network.py: -f TEST/params.py -b *8_46.75_8.75_47.125 -o swiss_helis.pkl
-    heli_network = load_network('swiss_helis.pkl')
+    heli_network = load_network('swiss_helis.pkl', path)
 
     scenario = ScenarioContainer('swiss', 'Swiss', 'Swiss Air Force shooting range Axalp and other training targets',
                                  OPFOR_defaults,

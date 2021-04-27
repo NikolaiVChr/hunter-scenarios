@@ -134,7 +134,7 @@ def _construct_croatia_tanker(flight_level_m: float) -> nx.Graph:
     return graph
 
 
-def build_scenario() -> ScenarioContainer:
+def build_scenario(path: str) -> ScenarioContainer:
     static_targets = [
         StaticTarget(mpt.MPTarget.DEPOT, g.Position(15.45134603, 45.12084095, 315.22), 190),
         StaticTarget(mpt.MPTarget.COMPOUND, g.Position(15.47817711, 45.15597383, 278.89), 225),
@@ -195,7 +195,7 @@ def build_scenario() -> ScenarioContainer:
 
     # a convoy of trucks close to Slunj at Glavicica
     # road_network.py: -f TEST/params.py -b *15.526_45.106_15.545_45.122 -o croatia_glavicica_roads.pkl -s
-    convoy_graph = load_network('croatia_glavicica_roads.pkl')
+    convoy_graph = load_network('croatia_glavicica_roads.pkl', path)
     origin_trip_convoy = g.Position(15.5429, 45.1121)  # helicopter North-West
     dests_convoy = [g.Position(15.5320, 45.1098),
                     g.Position(15.5281, 45.1125),

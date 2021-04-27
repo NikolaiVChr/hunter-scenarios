@@ -262,7 +262,7 @@ def _construct_sail_area_carrier_enat() -> List[Tuple[float, float]]:
             (22., 71.375), (23., 71.375), (24., 71.375)]
 
 
-def build_scenario() -> ScenarioContainer:
+def build_scenario(path: str) -> ScenarioContainer:
     static_targets = [
         # Airport ENAT Alta
         StaticTarget(mpt.MPTarget.BUK_M2, g.Position(23.3584, 69.9709, g.feet_to_metres(187.)), 0, 2),

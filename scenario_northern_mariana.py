@@ -84,7 +84,7 @@ def _construct_northern_mariana_ship(above_ground_m: float) -> nx.Graph:
     return graph
 
 
-def build_scenario() -> ScenarioContainer:
+def build_scenario(path: str) -> ScenarioContainer:
     static_targets = [
         StaticTarget(mpt.MPTarget.BUK_M2, g.Position(145.66579653, 14.95363634, 2.8763), 0, 2),
         StaticTarget(mpt.MPTarget.S_300, g.Position(145.65159095, 14.95604869, 182.8701), 0, 1),
