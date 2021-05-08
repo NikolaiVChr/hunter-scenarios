@@ -1,6 +1,6 @@
 import hunter.geometry as g
 import hunter.mp_targets as mpt
-from hunter.scenarios import OPFOR_defaults, ScenarioContainer, StaticTarget
+from hunter.scenarios import ScenarioContainer, StaticTarget
 
 
 def build_scenario(path: str) -> ScenarioContainer:
@@ -70,8 +70,7 @@ def build_scenario(path: str) -> ScenarioContainer:
     scenario = ScenarioContainer('grafenwoehr', 'Grafenwöhr shooting range',
                                  'https://de.wikipedia.org/wiki/Truppen%C3%BCbungsplatz_Grafenw%C3%B6hr',
                                  # https://www.bundeswehr.de/de/suche?typeahead=grafenw%C3%B6hr
-                                 OPFOR_defaults,
                                  (11.5, 49.6), (12., 49.75),
-                                 'ETIC', 3.8, None, 60)
+                                 'ETIC', None, 60)
     scenario.add_static_targets(static_targets)
     return scenario

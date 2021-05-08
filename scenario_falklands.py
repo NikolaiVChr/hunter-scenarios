@@ -2,7 +2,7 @@ import networkx as nx
 
 import hunter.geometry as g
 import hunter.mp_targets as mpt
-from hunter.scenarios import OPFOR_defaults, ScenarioContainer, StaticTarget
+from hunter.scenarios import ScenarioContainer, StaticTarget
 
 
 def _construct_falklands_ship(above_ground_m: float) -> nx.Graph:
@@ -119,9 +119,8 @@ def build_scenario(path: str) -> ScenarioContainer:
     ]
     scenario = ScenarioContainer('falklands', 'Falklands',
                                  'Cf. http://opredflag.com/events/923128?event_instance_id=15944889',
-                                 OPFOR_defaults,
                                  (-61., -52.5), (-57.5, -51.2),
-                                 'EGYP', 2.0, None, 60)
+                                 'EGYP', None, 60)
     scenario.add_static_targets(static_targets)
     scenario.add_ships(2, 0, 3, _construct_falklands_ship(0.), [mpt.oprf_frigate])
     return scenario

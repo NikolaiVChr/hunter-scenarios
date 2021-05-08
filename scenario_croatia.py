@@ -5,7 +5,7 @@ import networkx as nx
 import hunter.fg_targets as fgt
 import hunter.geometry as g
 import hunter.mp_targets as mpt
-from hunter.scenarios import (OPFOR_defaults, ScenarioContainer, StaticTarget, load_network,
+from hunter.scenarios import (ScenarioContainer, StaticTarget, load_network,
                               CarrierDefinition, TankerDefinition, LIPA)
 
 
@@ -214,9 +214,8 @@ def build_scenario(path: str) -> ScenarioContainer:
     tanker = TankerDefinition(LIPA, _construct_croatia_tanker(g.feet_to_metres(20000)))
 
     scenario = ScenarioContainer('croatia', 'Eugen Kvaternik', 'Croatian Military Range near Slunj',
-                                 OPFOR_defaults,
                                  (14.5, 44.625), (15.75, 45.25),
-                                 'LDRI', 4.0, None, 60)
+                                 'LDRI', None, 60)
     scenario.add_static_targets(static_targets)
     scenario.add_targets_with_trips(trip_targets)
     scenario.add_carrier(vinson_carrier)

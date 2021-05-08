@@ -2,7 +2,7 @@ import networkx as nx
 
 import hunter.geometry as g
 import hunter.mp_targets as mpt
-from hunter.scenarios import OPFOR_defaults, ScenarioContainer, StaticTarget, default_ships_list
+from hunter.scenarios import ScenarioContainer, StaticTarget, default_ships_list
 
 
 def _construct_northern_mariana_ship(above_ground_m: float) -> nx.Graph:
@@ -105,9 +105,8 @@ def build_scenario(path: str) -> ScenarioContainer:
     ]
     scenario = ScenarioContainer('northern_mariana', 'Northern Mariana',
                                  'http://opredflag.com/events/929815?event_instance_id=16025063',
-                                 OPFOR_defaults,
                                  (143.75, 14.76), (146, 15.375),
-                                 'PGSN', 0.3, None, 60)
+                                 'PGSN', None, 60)
     scenario.add_static_targets(static_targets)
     scenario.add_ships(3, 0, 0, _construct_northern_mariana_ship(0.), default_ships_list)
     return scenario

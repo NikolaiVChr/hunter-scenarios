@@ -5,7 +5,7 @@ import networkx as nx
 import hunter.fg_targets as fgt
 import hunter.geometry as g
 import hunter.mp_targets as mpt
-from hunter.scenarios import (OPFOR_defaults, ScenarioContainer, StaticTarget, CarrierDefinition, TankerDefinition,
+from hunter.scenarios import (ScenarioContainer, StaticTarget, CarrierDefinition, TankerDefinition,
                               AutomatTarget, AutomatType, ENTC,
                               default_ships_list, default_helis_list, default_drones_list)
 
@@ -341,9 +341,8 @@ def build_scenario(path: str) -> ScenarioContainer:
     vinson_carrier = CarrierDefinition(fgt.CarrierType.vinson, _construct_sail_area_carrier_enat(), (21.5, 70.9))
     tanker = TankerDefinition(ENTC, _construct_north_norway_tanker(g.feet_to_metres(20000)))
     scenario = ScenarioContainer('north_norway', 'North Norway',  'Cf. http://opredflag.com/forum_threads/3154248',
-                                 OPFOR_defaults,
                                  (20., 69.5), (27., 71.5),
-                                 'ENNA', 12.3, None, 60)
+                                 'ENNA', None, 60)
     scenario.add_static_targets(static_targets)
     scenario.add_automats([automat_1, automat_2])
     scenario.add_carrier(vinson_carrier)

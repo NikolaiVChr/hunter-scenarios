@@ -1,6 +1,6 @@
 import hunter.geometry as g
 import hunter.mp_targets as mpt
-from hunter.scenarios import OPFOR_defaults, ScenarioContainer, StaticTarget
+from hunter.scenarios import ScenarioContainer, StaticTarget
 
 
 def build_scenario(path: str) -> ScenarioContainer:
@@ -48,8 +48,7 @@ def build_scenario(path: str) -> ScenarioContainer:
         StaticTarget(mpt.MPTarget.POWER_PLANT, g.Position(19.45015968, 66.26757949, 659.2291), 48.0),
     ]
     scenario = ScenarioContainer('vidsel', 'Vidsel test range', 'Vidsel test range',
-                                 OPFOR_defaults,
                                  (18.0, 65.7), (20.5, 67.0),
-                                 'ESNJ', 8.8, None, 60)
+                                 'ESNJ', None, 60)
     scenario.add_static_targets(static_targets)
     return scenario

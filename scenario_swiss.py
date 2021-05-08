@@ -2,7 +2,7 @@ import networkx as nx
 
 import hunter.geometry as g
 import hunter.mp_targets as mpt
-from hunter.scenarios import (OPFOR_defaults, ScenarioContainer, StaticTarget, create_circle_points, load_network,
+from hunter.scenarios import (ScenarioContainer, StaticTarget, create_circle_points, load_network,
                               default_helis_list)
 
 
@@ -177,9 +177,8 @@ def build_scenario(path: str) -> ScenarioContainer:
     heli_network = load_network('swiss_helis.pkl', path)
 
     scenario = ScenarioContainer('swiss', 'Swiss', 'Swiss Air Force shooting range Axalp and other training targets',
-                                 OPFOR_defaults,
                                  (6.7, 46.5), (8.8, 47.1),
-                                 'LSMM', 2.5, None, 60)
+                                 'LSMM', None, 60)
     scenario.add_static_targets(static_targets)
     scenario.add_targets_with_trips(trip_targets)
     scenario.add_towed_targets(2, mpt.pc9, 500, 120, _construct_dammastock_circle())
