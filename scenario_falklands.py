@@ -2,7 +2,7 @@ import networkx as nx
 
 import hunter.geometry as g
 import hunter.mp_targets as mpt
-from hunter.scenarios import ScenarioContainer, StaticTarget
+from hunter.scenarios import ScenarioContainer, StaticTarget, load_network, default_helis_list
 
 
 def _construct_falklands_ship(above_ground_m: float) -> nx.Graph:
@@ -122,5 +122,15 @@ def build_scenario(path: str) -> ScenarioContainer:
                                  (-61., -52.5), (-57.5, -51.2),
                                  'EGYP', None, 60)
     scenario.add_static_targets(static_targets)
+
+    # network created with heli_network.py: -f TEST/params.py -b *-61.5_-52.2_-59.3_-51 -o falklands_helis.pkl
+    # this network covers all of West Falkland plus some of the south western part of East Falkland
+    # removed coastline from linear tags and added primary, secondary, tertiary and unclassified roads, route=ferry
+    # added hamlet and isolated_dwelling to pov_tags
+    # changed LINK_DIST_OK_DANGLING = 5000
+    # changed LINK_DIST_ACCEPTABLE_SUB_GRAPHS = 15000
+    heli_network = load_network('falklands_helis.pkl', path)
+
+    scenario.add_helicopters(0, 15, heli_network, default_helis_list)
     scenario.add_ships(2, 0, 3, _construct_falklands_ship(0.), [mpt.oprf_frigate])
     return scenario
