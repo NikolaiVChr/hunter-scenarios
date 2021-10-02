@@ -10,7 +10,47 @@ from hunter.scenarios import (ScenarioContainer, StaticTarget, CarrierDefinition
                               default_ships_list, default_helis_list, default_drones_list)
 
 
-def _construct_north_norway_ship(above_ground_m: float) -> nx.Graph:
+def _construct_speedboat_network() -> nx.Graph:
+    # southern part East of ENNA
+    wp_1 = g.WayPoint(1, 25.1099, 70.0776)
+    wp_2 = g.WayPoint(2, 25.1995, 70.0939)
+    wp_3 = g.WayPoint(3, 25.1838, 70.1260)
+    wp_4 = g.WayPoint(4, 25.1151, 70.1572)
+    wp_5 = g.WayPoint(5, 25.2085, 70.1618)
+    wp_6 = g.WayPoint(6, 25.2552, 70.1604)
+
+    # northern part
+    wp_7 = g.WayPoint(7, 25.2644, 70.2349)
+    wp_8 = g.WayPoint(8, 25.1357, 70.2356)
+    wp_9 = g.WayPoint(9, 25.1254, 70.2045)
+    wp_10 = g.WayPoint(10, 25.2757, 70.2214)
+
+    graph = nx.Graph()
+    graph.add_nodes_from([wp_1, wp_2, wp_3, wp_4, wp_5, wp_6,
+                         wp_7, wp_8, wp_9, wp_10])
+
+    # southern part
+    graph.add_edge(wp_1, wp_2)
+    graph.add_edge(wp_1, wp_3)
+    graph.add_edge(wp_2, wp_3)
+    graph.add_edge(wp_3, wp_4)
+    graph.add_edge(wp_3, wp_5)
+    graph.add_edge(wp_3, wp_6)
+    graph.add_edge(wp_5, wp_6)
+
+    # northern part
+    graph.add_edge(wp_5, wp_10)
+    graph.add_edge(wp_6, wp_10)
+    graph.add_edge(wp_10, wp_7)
+    graph.add_edge(wp_7, wp_8)
+    graph.add_edge(wp_8, wp_9)
+    graph.add_edge(wp_9, wp_4)
+    graph.add_edge(wp_9, wp_10)
+
+    return graph
+
+
+def _construct_ships_network(above_ground_m: float) -> nx.Graph:
     # Stjernøya
     wp_0 = g.WayPoint(0, 23.052063, 70.226493)
     wp_1 = g.WayPoint(1, 23., 70.325906)
@@ -280,16 +320,16 @@ def build_scenario(path: str) -> ScenarioContainer:
         StaticTarget(mpt.MPTarget.GASOMETER, g.Position(23.6513, 70.6789, 76), 0),
         StaticTarget(mpt.MPTarget.GASOMETER, g.Position(23.6793, 70.6803, 77), 0),
         # StaticTarget(MPTarget.TRUCK, g.Position(23.6665, 70.6796, 79), 0),
-        # StaticTarget(MPTarget.TRUCK, g.Position(23.6776, 70.6827, 80), 0),
+        StaticTarget(mpt.MPTarget.SHILKA, g.Position(23.6776, 70.6827, 80), 0),
         StaticTarget(mpt.MPTarget.BUK_M2, g.Position(23.6745, 70.6855, 159), 0, 1),
         StaticTarget(mpt.MPTarget.BUK_M2, g.Position(23.7201, 70.6806, 191), 0, 2),
         # Airport ENHV Honningsvåg
-        StaticTarget(mpt.MPTarget.LIGHT_HANGAR, g.Position(25.9764, 71.0091, 3), 0),
+        # StaticTarget(mpt.MPTarget.LIGHT_HANGAR, g.Position(25.9764, 71.0091, 3), 0),
         # StaticTarget(MPTarget.TRUCK, g.Position(25.9703, 71.0093, 0), 0),
         # StaticTarget(MPTarget.TRUCK, g.Position(25.9963, 71.0102, 3), 0),
         # StaticTarget(MPTarget.TRUCK, g.Position(25.9786, 71.0091, 5), 0),
-        StaticTarget(mpt.MPTarget.BUK_M2, g.Position(25.9803, 70.9878, 278), 0, 3),
-        StaticTarget(mpt.MPTarget.BUK_M2, g.Position(25.8925, 70.9844, 377), 0, 3),
+        # StaticTarget(mpt.MPTarget.BUK_M2, g.Position(25.9803, 70.9878, 278), 0, 3),
+        # StaticTarget(mpt.MPTarget.BUK_M2, g.Position(25.8925, 70.9844, 377), 0, 3),
         # airport ENNA Lakselv
         StaticTarget(mpt.MPTarget.BUK_M2, g.Position(24.9792, 70.0577, 7), 0, 2),
         StaticTarget(mpt.MPTarget.BUNKER, g.Position(24.9699, 70.064, 9), 85),  # along taxiway from south to north
@@ -303,15 +343,15 @@ def build_scenario(path: str) -> ScenarioContainer:
         StaticTarget(mpt.MPTarget.S_300, g.Position(24.9946, 70.0493, 12), 0, 1),
         # StaticTarget(wa.MPTarget.GASOMETER, g.Position(24.9818, 70.0669, 3), 0),
         StaticTarget(mpt.MPTarget.GASOMETER, g.Position(24.9833, 70.0648, 3), 0),
-        StaticTarget(mpt.MPTarget.OILRIG, g.Position(25.3508, 70.3837, 0), 0),
+        # StaticTarget(mpt.MPTarget.OILRIG, g.Position(25.3508, 70.3837, 0), 0),
         # airport ENHK Hasvik
         StaticTarget(mpt.MPTarget.BUNKER, g.Position(22.1347, 70.4861, 5), 0),
         StaticTarget(mpt.MPTarget.BUNKER, g.Position(22.1421, 70.4848, 10), 0),
         StaticTarget(mpt.MPTarget.BUK_M2, g.Position(22.2054, 70.4917, 46), 0, 2),
-        StaticTarget(mpt.MPTarget.S_300, g.Position(22.1351, 70.4966, 1), 0, 2),
+        StaticTarget(mpt.MPTarget.DVINA, g.Position(22.1351, 70.4966, 1), 0, 2),
         # StaticTarget(MPTarget.TRUCK, g.Position(22.1384, 70.4865, 10), 0),
         # StaticTarget(MPTarget.TRUCK, g.Position(22.1448, 70.4845, 12), 0),
-        StaticTarget(mpt.MPTarget.CONTAINERS, g.Position(22.1558, 70.4837, 0), 0),
+        StaticTarget(mpt.MPTarget.CONTARGET, g.Position(22.1558, 70.4837, 0), 0),
         # North-East to ENAT along the street
         # StaticTarget(MPTarget.TRUCK, g.Position(23.8913, 70.1761, 383), 0),
         # StaticTarget(MPTarget.TRUCK, g.Position(23.9093, 70.1769, 352), 0),
@@ -326,7 +366,7 @@ def build_scenario(path: str) -> ScenarioContainer:
         StaticTarget(mpt.MPTarget.BUK_M2, g.Position(24.9091, 70.2133, 41), 0, 1),
 
         # StaticTarget(MPTarget.TRUCK, g.Position(24.2908, 69.9208, 475), 0),
-        StaticTarget(mpt.MPTarget.BUK_M2, g.Position(24.3015, 69.9244, 469), 0, 2),
+        StaticTarget(mpt.MPTarget.DVINA, g.Position(24.3015, 69.9244, 469), 0, 2),
         # StaticTarget(MPTarget.TRUCK, g.Position(24.2836, 69.9192, 468), 0),
         # StaticTarget(MPTarget.TRUCK, g.Position(24.2759, 69.9173, 468), 0),
     ]
@@ -340,14 +380,25 @@ def build_scenario(path: str) -> ScenarioContainer:
                               True, 1, 2, 3, tacview=False)
     vinson_carrier = CarrierDefinition(fgt.CarrierType.vinson, _construct_sail_area_carrier_enat(), (21.5, 70.9))
     tanker = TankerDefinition(ENTC, _construct_north_norway_tanker(g.feet_to_metres(20000)))
+
+    speedboat_graph = _construct_speedboat_network()
+    origin_1 = g.Position(25.1838, 70.1260)  # WP_3
+    speedboat_1 = mpt.MPTargetTrips.create_random_target(mpt.MPTarget.SPEEDBOAT, speedboat_graph, origin_1,
+                                                         mpt.MPTargetTrips.STATIC_HP, 5, 10000, 0)
+    origin_2 = g.Position(25.1357, 70.2356)  # WP_8
+    speedboat_2 = mpt.MPTargetTrips.create_random_target(mpt.MPTarget.SPEEDBOAT, speedboat_graph, origin_2,
+                                                         mpt.MPTargetTrips.STATIC_HP, 5, 10000, 0)
+    trip_targets = [speedboat_1, speedboat_2]
+
     scenario = ScenarioContainer('north_norway', 'North Norway',  'Cf. http://opredflag.com/forum_threads/3154248',
                                  (20., 69.5), (27., 71.5),
                                  'ENNA', None, 60)
     scenario.add_static_targets(static_targets)
+    scenario.add_targets_with_trips(trip_targets)
     scenario.add_automats([automat_1, automat_2])
     scenario.add_carrier(vinson_carrier)
     scenario.add_tanker(tanker)
     scenario.add_helicopters(3, 5, _construct_north_norway_heli(100.), default_helis_list)
     scenario.add_drones(3, 5, _construct_north_norway_heli(100.), default_drones_list)
-    scenario.add_ships(3, 5, 8, _construct_north_norway_ship(0.), default_ships_list)
+    scenario.add_ships(3, 5, 8, _construct_ships_network(0.), default_ships_list)
     return scenario
