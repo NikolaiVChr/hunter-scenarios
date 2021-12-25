@@ -307,7 +307,7 @@ def build_scenario(path: str) -> ScenarioContainer:
         # Airport ENAT Alta
         StaticTarget(mpt.MPTarget.BUK_M2, g.Position(23.3584, 69.9709, g.feet_to_metres(187.)), 0, 2),
         StaticTarget(mpt.MPTarget.S_300, g.Position(23.2561, 69.8920, 22), 0, 1),
-        StaticTarget(mpt.MPTarget.BUK_M2, g.Position(23.2868, 69.9833, g.feet_to_metres(610.)), 0, 1),
+        StaticTarget(mpt.MPTarget.TRUCK, g.Position(23.2868, 69.9833, g.feet_to_metres(610.)), 0, 1),
         StaticTarget(mpt.MPTarget.DOUBLE_SHELTER, g.Position(23.3429, 69.9805, 0), 120),
         StaticTarget(mpt.MPTarget.DOUBLE_SHELTER, g.Position(23.3466, 69.9798, 0), 120),
         StaticTarget(mpt.MPTarget.TOWER, g.Position(23.3555, 69.9775, 3), 30),
