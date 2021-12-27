@@ -47,7 +47,7 @@ def build_scenario(path: str) -> ScenarioContainer:
 
     scenario = ScenarioContainer('nevada', 'Nevada',  'Cf. http://opredflag.com/forum_threads/3154248',
                                  (20., 69.5), (27., 71.5),
-                                 'KXTA', None, 60)
+                                 'ENNA', None, 60)
     scenario.add_static_targets(static_targets)
     #scenario.add_targets_with_trips(trip_targets)
     #scenario.add_automats([automat_1, automat_2])
