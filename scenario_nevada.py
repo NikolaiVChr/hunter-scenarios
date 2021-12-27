@@ -52,7 +52,7 @@ def build_scenario(path: str) -> ScenarioContainer:
     #scenario.add_targets_with_trips(trip_targets)
     #scenario.add_automats([automat_1, automat_2])
     #scenario.add_carrier(vinson_carrier)
-    scenario.add_tanker(tanker)
+    #scenario.add_tanker(tanker)
     #scenario.add_helicopters(3, 5, _construct_north_norway_heli(100.), default_helis_list)
     #scenario.add_drones(3, 5, _construct_north_norway_heli(100.), default_drones_list)
     #scenario.add_ships(3, 5, 8, _construct_ships_network(0.), default_ships_list)
