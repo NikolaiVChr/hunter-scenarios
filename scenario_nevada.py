@@ -29,7 +29,7 @@ def build_scenario(path: str) -> ScenarioContainer:
     ]
 
     scenario = ScenarioContainer('nevada', 'Nevada',  'Cf. http://opredflag.com/forum_threads/3154248',
-                                 (35., -116.), (38., -115.),
+                                 (35., -115.), (38., -117.),
                                  'KXTA', None, 60)
     scenario.add_static_targets(static_targets)
     return scenario
